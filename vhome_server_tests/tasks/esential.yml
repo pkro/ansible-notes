@@ -1,0 +1,23 @@
+- name: Update packages # first play
+  # apt is an ansible built in command
+  # the following are parameters for the ansible apt command, not the node's apt program
+  # update_cache=yes: run apt-get update first
+  # force_apt_get=yes: use apt-get instead of apt
+  # cache_valid_time=3600: update apt cache if older than 3600 seconds
+  # Note that the following "style" would also work:
+  # apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+    cache_valid_time: 3600
+    state: latest # update all packages to the latest state; GPT: what does this mean / do exactly?
+
+- name: Install essential packages
+  package:
+    name:
+      - vim
+      - neofetch
+      - htop
+      - tmux
+      - speedtest-cli
+    state: latest
